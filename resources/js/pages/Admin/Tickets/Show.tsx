@@ -7,16 +7,26 @@ import { ArrowLeft, Edit, Users, Calendar, DollarSign, Package, Image as ImageIc
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem } from '@/types';
 
-interface Customer {
+interface FormField {
     id: number;
     name: string;
-    email: string;
-    phone: string;
+    label: string;
+    type: 'text' | 'email' | 'tel' | 'number' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'date';
+    is_required: boolean;
+    is_active: boolean;
+    placeholder?: string;
+    description?: string;
+    validation_rules?: string;
+    options?: string[];
+    order: number;
+}
+
+interface Customer {
+    id?: number | null;
+    name?: string;
+    email?: string;
+    phone?: string;
     nik?: string;
-    date_of_birth?: string;
-    address?: string;
-    emergency_contact_name?: string;
-    emergency_contact_phone?: string;
 }
 
 interface Order {
@@ -26,7 +36,8 @@ interface Order {
     total_price: number;
     status: string;
     created_at: string;
-    customer: Customer;
+    customer: Customer | null;
+    form_data?: Record<string, any>; // data form dinamis
 }
 
 interface Ticket {
@@ -46,6 +57,7 @@ interface Ticket {
 
 interface Props {
     ticket: Ticket;
+    formFields?: FormField[];
 }
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -92,7 +104,18 @@ const getStatusBadge = (status: string) => {
     return <Badge variant={config.variant}>{config.label}</Badge>;
 };
 
-export default function Show({ ticket }: Props) {
+export default function Show({ ticket, formFields = [] }: Props) {
+    // Helper function untuk mendapatkan data customer dari form dinamis
+    const getCustomerInfo = (order: Order) => {
+        // Prioritas: customer object (backward compatibility) -> form_data
+        return {
+            name: order.customer?.name || order.form_data?.name || 'Unknown Customer',
+            email: order.customer?.email || order.form_data?.email || 'No email',
+            phone: order.customer?.phone || order.form_data?.phone || 'N/A',
+            nik: order.customer?.nik || order.form_data?.nik || null,
+        };
+    };
+
     const soldTickets = ticket.orders.reduce((total, order) => {
         if (order.status === 'paid') {
             return total + order.quantity;
@@ -237,7 +260,6 @@ export default function Show({ ticket }: Props) {
                                             <TableHeader>
                                                 <TableRow>
                                                     <TableHead>Order Number</TableHead>
-                                                    <TableHead>Customer</TableHead>
                                                     <TableHead>Quantity</TableHead>
                                                     <TableHead>Total</TableHead>
                                                     <TableHead>Status</TableHead>
@@ -249,12 +271,6 @@ export default function Show({ ticket }: Props) {
                                                     <TableRow key={order.id}>
                                                         <TableCell className="font-mono text-sm">
                                                             {order.order_number}
-                                                        </TableCell>
-                                                        <TableCell>
-                                                            <div>
-                                                                <p className="font-medium">{order.customer.name}</p>
-                                                                <p className="text-sm text-muted-foreground">{order.customer.email}</p>
-                                                            </div>
                                                         </TableCell>
                                                         <TableCell className="text-center">
                                                             {order.quantity}
