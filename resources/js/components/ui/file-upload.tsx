@@ -108,22 +108,36 @@ export function FileUpload({ label, value, onChange, accept = "image/*", placeho
             )}
 
             {/* File Upload */}
-            <div className="relative">
+            <div className="space-y-2">
+                <div className="relative">
+                    <Input
+                        type="file"
+                        accept={accept}
+                        onChange={handleFileChange}
+                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        disabled={uploading}
+                    />
+                    <Button 
+                        variant="outline" 
+                        disabled={uploading}
+                        className="flex items-center gap-2 w-full"
+                    >
+                        <Upload className="h-4 w-4" />
+                        {uploading ? 'Uploading...' : (preview ? 'Ganti File' : 'Upload File')}
+                    </Button>
+                </div>
+                
+                {/* Manual URL Input */}
+                <div className="text-sm text-gray-500">
+                    Atau masukkan URL gambar:
+                </div>
                 <Input
-                    type="file"
-                    accept={accept}
-                    onChange={handleFileChange}
-                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    disabled={uploading}
+                    type="url"
+                    value={value || ''}
+                    onChange={(e) => handleUrlChange(e.target.value)}
+                    placeholder={placeholder || "https://example.com/image.jpg"}
+                    className="text-sm"
                 />
-                <Button 
-                    variant="outline" 
-                    disabled={uploading}
-                    className="flex items-center gap-2 w-full"
-                >
-                    <Upload className="h-4 w-4" />
-                    {uploading ? 'Uploading...' : (preview ? 'Ganti File' : 'Upload File')}
-                </Button>
             </div>
         </div>
     );
