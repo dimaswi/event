@@ -20,6 +20,18 @@ export function FileUpload({ label, value, onChange, accept = "image/*", placeho
         const file = e.target.files?.[0];
         if (!file) return;
 
+        // Validate file size (2MB)
+        if (file.size > 2 * 1024 * 1024) {
+            alert('File terlalu besar. Maksimal 2MB.');
+            return;
+        }
+
+        // Validate file type
+        if (!file.type.startsWith('image/')) {
+            alert('File harus berupa gambar.');
+            return;
+        }
+
         setUploading(true);
         
         try {
@@ -27,26 +39,35 @@ export function FileUpload({ label, value, onChange, accept = "image/*", placeho
             const formData = new FormData();
             formData.append('file', file);
 
+            // Get CSRF token
+            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+            if (!csrfToken) {
+                throw new Error('CSRF token tidak ditemukan');
+            }
+
             // Upload file to server
             const response = await fetch('/api/upload', {
                 method: 'POST',
                 body: formData,
                 headers: {
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '',
+                    'X-CSRF-TOKEN': csrfToken,
+                    'Accept': 'application/json',
                 },
+                credentials: 'same-origin',
             });
 
-            if (response.ok) {
-                const data = await response.json();
+            const data = await response.json();
+
+            if (response.ok && data.success) {
                 const fileUrl = data.url;
                 setPreview(fileUrl);
                 onChange(fileUrl);
             } else {
-                throw new Error('Upload failed');
+                throw new Error(data.message || 'Upload gagal');
             }
         } catch (error) {
             console.error('Error uploading file:', error);
-            alert('Error uploading file. Please try again.');
+            alert(`Error uploading file: ${error instanceof Error ? error.message : 'Silakan coba lagi.'}`);
         } finally {
             setUploading(false);
         }
