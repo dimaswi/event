@@ -147,7 +147,7 @@ export default function Landing({ tickets, eventSettings }: Props) {
                 >
                     {/* <div className="absolute inset-0 bg-black bg-opacity-20"></div> */}
                     <div className="relative container mx-auto px-4 text-center">
-                        <h1 className="text-3xl md:text-6xl font-bold mb-6">
+                        <h1 className="text-2xl md:text-6xl font-bold mb-6">
                             {eventSettings.event?.event_name || 'Fun Run Event 2025'}
                         </h1>
                         <p className="text-base text-white text-xl leading-relaxed max-w-3xl mx-auto py-8">
