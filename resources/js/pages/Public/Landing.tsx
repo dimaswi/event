@@ -150,9 +150,11 @@ export default function Landing({ tickets, eventSettings }: Props) {
                         <h1 className="text-3xl md:text-6xl font-bold mb-6">
                             {eventSettings.event?.event_name || 'Fun Run Event 2025'}
                         </h1>
-                        <p className="text-base md:text-xl mb-8 md:mb-12 max-w-2xl mx-auto px-4">
-                            {eventSettings.event?.event_description || 'Bergabunglah dalam acara lari yang menyenangkan! Nikmati pengalaman lari bersama ribuan peserta lainnya di lingkungan yang indah dan energik.'}
+                        <p className="text-base text-white leading-relaxed max-w-3xl mx-auto">
+                          {eventSettings.event?.event_description || 
+                           "Fun Walk Klinik Muhammadiyah Kedungadem hadir meriah! Jalan sehat, doorprize menarik, dan suasana penuh silaturahmi. Yuk ramaikan bersama keluarga tercinta, langkah sehat menuju kebahagiaan."}
                         </p>
+
                         
                         {/* Event Info */}
                         <div className="flex justify-center items-center gap-4 md:gap-8 text-xs md:text-sm mb-8 md:mb-12 flex-wrap">
