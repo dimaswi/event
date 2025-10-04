@@ -214,8 +214,8 @@ export default function Landing({ tickets, eventSettings }: Props) {
                             </h2>
                             <p className="text-sm md:text-base text-gray-600">
                                 {eventSettings.sponsor?.sponsor_subtitle || 'Partner dan sponsor yang mendukung acara Fun Run Event 2025'}
-                            </p>
-                        </div> */}
+                            </p> */}
+                        </div>
                         
                         {/* Scrolling Sponsors */}
                         <div className="relative overflow-hidden">
