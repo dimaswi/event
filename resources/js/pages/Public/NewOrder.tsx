@@ -104,7 +104,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
       case 'date':
         return (
           <div key={field.id} className="space-y-2">
-            <Label htmlFor={field.name}>
+            <Label htmlFor={field.name} className="dark:text-gray-200">
               {field.label}
               {field.is_required && <span className="text-red-500 ml-1">*</span>}
             </Label>
@@ -115,9 +115,10 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
               value={fieldValue}
               onChange={(e) => handleFieldChange(field.name, e.target.value)}
               required={field.is_required}
+              className="dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
             />
             {field.description && (
-              <p className="text-sm text-muted-foreground">{field.description}</p>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">{field.description}</p>
             )}
           </div>
         );
@@ -125,7 +126,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
       case 'textarea':
         return (
           <div key={field.id} className="space-y-2">
-            <Label htmlFor={field.name}>
+            <Label htmlFor={field.name} className="dark:text-gray-200">
               {field.label}
               {field.is_required && <span className="text-red-500 ml-1">*</span>}
             </Label>
@@ -135,9 +136,10 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
               value={fieldValue}
               onChange={(e) => handleFieldChange(field.name, e.target.value)}
               required={field.is_required}
+              className="dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400"
             />
             {field.description && (
-              <p className="text-sm text-muted-foreground">{field.description}</p>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">{field.description}</p>
             )}
           </div>
         );
@@ -145,7 +147,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
       case 'select':
         return (
           <div key={field.id} className="space-y-2">
-            <Label htmlFor={field.name}>
+            <Label htmlFor={field.name} className="dark:text-gray-200">
               {field.label}
               {field.is_required && <span className="text-red-500 ml-1">*</span>}
             </Label>
@@ -153,19 +155,19 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
               value={fieldValue}
               onValueChange={(value) => handleFieldChange(field.name, value)}
             >
-              <SelectTrigger>
+              <SelectTrigger className="dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100">
                 <SelectValue placeholder={field.placeholder || `Pilih ${field.label}`} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="dark:bg-gray-800 dark:border-gray-600">
                 {field.options?.map((option, index) => (
-                  <SelectItem key={index} value={option}>
+                  <SelectItem key={index} value={option} className="dark:text-gray-100 dark:focus:bg-gray-700">
                     {option}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
             {field.description && (
-              <p className="text-sm text-muted-foreground">{field.description}</p>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">{field.description}</p>
             )}
           </div>
         );
@@ -173,7 +175,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
       case 'checkbox':
         return (
           <div key={field.id} className="space-y-2">
-            <div className="flex items-start space-x-3 p-4 border rounded-lg bg-blue-50 border-blue-200">
+            <div className="flex items-start space-x-3 p-4 border rounded-lg bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
               <Checkbox
                 id={field.name}
                 checked={!!fieldValue}
@@ -181,12 +183,12 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                 required={field.is_required}
               />
               <div className="flex-1">
-                <Label htmlFor={field.name} className="text-sm font-medium cursor-pointer">
+                <Label htmlFor={field.name} className="text-sm font-medium cursor-pointer dark:text-gray-200">
                   {field.label}
                   {field.is_required && <span className="text-red-500 ml-1">*</span>}
                 </Label>
                 {field.description && (
-                  <p className="text-xs text-gray-600 mt-1">{field.description}</p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{field.description}</p>
                 )}
               </div>
             </div>
@@ -196,7 +198,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
       case 'radio':
         return (
           <div key={field.id} className="space-y-2">
-            <Label>
+            <Label className="dark:text-gray-200">
               {field.label}
               {field.is_required && <span className="text-red-500 ml-1">*</span>}
             </Label>
@@ -211,16 +213,16 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                     checked={fieldValue === option}
                     onChange={(e) => handleFieldChange(field.name, e.target.value)}
                     required={field.is_required}
-                    className="h-4 w-4 text-blue-600"
+                    className="h-4 w-4 text-blue-600 dark:text-blue-400 dark:bg-gray-800 dark:border-gray-600"
                   />
-                  <Label htmlFor={`${field.name}-${index}`} className="text-sm">
+                  <Label htmlFor={`${field.name}-${index}`} className="text-sm dark:text-gray-200">
                     {option}
                   </Label>
                 </div>
               ))}
             </div>
             {field.description && (
-              <p className="text-sm text-muted-foreground">{field.description}</p>
+              <p className="text-sm text-muted-foreground dark:text-gray-400">{field.description}</p>
             )}
           </div>
         );
@@ -323,9 +325,9 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
     <>
       <Head title="Pendaftaran - Fun Run Event" />
       
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Header */}
-        <header className="bg-white shadow-sm border-b">
+        <header className="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -335,14 +337,14 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                   className="h-10 w-10 object-contain" 
                 />
                 <div>
-                  <h1 className="text-xl font-bold text-gray-900">
+                  <h1 className="text-xl font-bold text-gray-900 dark:text-gray-100">
                     {settings?.event?.event_name || 'TIKET EVENT'}
                   </h1>
-                  <p className="text-sm text-gray-600">Formulir Pendaftaran</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Formulir Pendaftaran</p>
                 </div>
               </div>
               
-              <Link href="/" className="flex items-center text-blue-600 hover:text-blue-700 font-medium">
+              <Link href="/" className="flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
                 <ArrowLeft className="w-4 h-4 mr-1" />
                 Kembali
               </Link>
@@ -352,10 +354,10 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
 
         <div className="container mx-auto max-w-6xl px-4 py-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
               Formulir Pendaftaran Event
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-600 dark:text-gray-400">
               Lengkapi data diri Anda dan pilih kategori tiket
             </p>
           </div>
@@ -379,13 +381,13 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
 
                     {/* Captcha Security */}
                     <div>
-                      <h3 className="text-lg font-semibold mb-4">Verifikasi Keamanan</h3>
-                      <div className="p-4 border rounded-lg bg-orange-50 border-orange-200">
-                        <Label htmlFor="captcha" className="text-sm font-medium">
+                      <h3 className="text-lg font-semibold mb-4 dark:text-gray-100">Verifikasi Keamanan</h3>
+                      <div className="p-4 border rounded-lg bg-orange-50 dark:bg-orange-900/20 border-orange-200 dark:border-orange-800">
+                        <Label htmlFor="captcha" className="text-sm font-medium dark:text-gray-200">
                           Jawab pertanyaan matematika berikut untuk melanjutkan *
                         </Label>
                         <div className="mt-2 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-                          <div className="flex items-center gap-2 bg-white px-3 sm:px-4 py-2 rounded border font-mono text-base sm:text-lg">
+                          <div className="flex items-center gap-2 bg-white dark:bg-gray-800 px-3 sm:px-4 py-2 rounded border dark:border-gray-600 font-mono text-base sm:text-lg dark:text-gray-200">
                             <span>{captchaNum1}</span>
                             <span>+</span>
                             <span>{captchaNum2}</span>
@@ -399,7 +401,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                               value={captchaAnswer}
                               onChange={(e) => setCaptchaAnswer(e.target.value)}
                               placeholder="Jawaban"
-                              className={`w-20 sm:w-24 ${captchaError ? 'border-red-500' : ''}`}
+                              className={`w-20 sm:w-24 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400 ${captchaError ? 'border-red-500' : ''}`}
                               min="0"
                               max="20"
                             />
@@ -417,7 +419,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                         {captchaError && (
                           <p className="text-red-500 text-sm mt-2">{captchaError}</p>
                         )}
-                        <p className="text-xs text-gray-600 mt-2">
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">
                           Captcha ini membantu melindungi sistem dari serangan otomatis
                         </p>
                       </div>
@@ -445,8 +447,8 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                           key={ticket.id}
                           className={`p-4 border rounded-lg cursor-pointer transition-all ${
                             selectedTicket?.id === ticket.id 
-                              ? 'border-primary bg-primary/5 ring-2 ring-primary/20' 
-                              : 'border-gray-200 hover:border-gray-300'
+                              ? 'border-primary bg-primary/5 dark:bg-primary/10 ring-2 ring-primary/20' 
+                              : 'border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600'
                           }`}
                           onClick={() => handleTicketSelect(ticket.id.toString())}
                         >
@@ -454,7 +456,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                             <div className={`w-4 h-4 rounded-full border-2 ${
                               selectedTicket?.id === ticket.id
                                 ? 'bg-primary border-primary'
-                                : 'border-gray-300'
+                                : 'border-gray-300 dark:border-gray-600'
                             }`}>
                               {selectedTicket?.id === ticket.id && (
                                 <CheckCircle className="w-4 h-4 text-white" />
@@ -462,14 +464,14 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center gap-2 mb-1">
-                                <h4 className="font-semibold">{ticket.name}</h4>
+                                <h4 className="font-semibold dark:text-gray-100">{ticket.name}</h4>
                                 {ticket.is_free && (
                                   <Badge className="bg-green-500 text-white text-xs">GRATIS</Badge>
                                 )}
                               </div>
-                              <p className="text-sm text-gray-600 mb-2">{ticket.description}</p>
+                              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{ticket.description}</p>
                               <div className="flex justify-between items-center">
-                                <span className={`font-bold ${ticket.is_free ? 'text-green-600' : 'text-primary'}`}>
+                                <span className={`font-bold ${ticket.is_free ? 'text-green-600 dark:text-green-400' : 'text-primary dark:text-primary'}`}>
                                   {formatPrice(ticket.price)}
                                 </span>
                                 <Badge variant="outline">{ticket.stock - ticket.sold} tersisa</Badge>
@@ -480,9 +482,9 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                       ))
                     ) : (
                       <div className="text-center py-8">
-                        <AlertCircle className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                        <p className="text-gray-500 mb-2">Belum ada tiket tersedia</p>
-                        <p className="text-sm text-gray-400">
+                        <AlertCircle className="h-12 w-12 text-gray-400 dark:text-gray-600 mx-auto mb-4" />
+                        <p className="text-gray-500 dark:text-gray-400 mb-2">Belum ada tiket tersedia</p>
+                        <p className="text-sm text-gray-400 dark:text-gray-500">
                           Silakan hubungi admin untuk informasi lebih lanjut
                         </p>
                       </div>
@@ -497,8 +499,8 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                       <CardTitle>Detail Pesanan</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <div className="rounded-lg border border-blue-200 bg-blue-50 p-3">
-                        <p className="text-sm text-blue-700">
+                      <div className="rounded-lg border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/20 p-3">
+                        <p className="text-sm text-blue-700 dark:text-blue-300">
                           <strong>Kebijakan:</strong> Setiap orang hanya dapat membeli 1 tiket.
                         </p>
                       </div>
@@ -537,7 +539,7 @@ export default function NewOrder({ tickets, formFields, eventSettings }: Props) 
                         )}
                       </Button>
 
-                      <p className="text-xs text-gray-500 text-center">
+                      <p className="text-xs text-gray-500 dark:text-gray-400 text-center">
                         Dengan mendaftar, Anda menyetujui syarat dan ketentuan yang berlaku
                       </p>
                     </CardContent>
