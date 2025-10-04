@@ -105,7 +105,7 @@ export default function Landing({ tickets, eventSettings }: Props) {
             <div className="min-h-screen bg-gradient-main">
                 {/* Header - Hidden on mobile */}
                 <header className="bg-white shadow-md hidden md:block">
-                    <div className="container mx-auto px-4 py-4">
+                    <div className="container px-4 py-4">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center gap-3">
                                 <img 
@@ -120,7 +120,7 @@ export default function Landing({ tickets, eventSettings }: Props) {
                                     <h1 className="text-xl font-bold text-gray-900">
                                         {eventSettings.event?.event_name || 'Fun Run Event'}
                                     </h1>
-                                    <p className="text-sm text-gray-600 max-w-xl">
+                                    <p className="text-sm text-gray-600">
                                         {eventSettings.event?.event_subtitle || 'Jakarta Marathon Series'}
                                     </p>
                                 </div>
