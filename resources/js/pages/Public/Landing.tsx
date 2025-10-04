@@ -150,7 +150,7 @@ export default function Landing({ tickets, eventSettings }: Props) {
                         <h1 className="text-3xl md:text-6xl font-bold mb-6">
                             {eventSettings.event?.event_name || 'Fun Run Event 2025'}
                         </h1>
-                        <p className="text-base text-white text-sm leading-relaxed max-w-3xl mx-auto py-4">
+                        <p className="text-base text-white text-xl leading-relaxed max-w-3xl mx-auto py-8">
                           {eventSettings.event?.event_description || 
                            "Fun Walk Klinik Muhammadiyah Kedungadem hadir meriah! Jalan sehat, doorprize menarik, dan suasana penuh silaturahmi. Yuk ramaikan bersama keluarga tercinta, langkah sehat menuju kebahagiaan."}
                         </p>
@@ -211,10 +211,10 @@ export default function Landing({ tickets, eventSettings }: Props) {
                         <div className="text-center mb-8">
                             {/* <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
                                 {eventSettings.sponsor?.sponsor_title || 'Didukung Oleh'}
-                            </h2>
+                            </h2> */}
                             <p className="text-sm md:text-base text-gray-600">
                                 {eventSettings.sponsor?.sponsor_subtitle || 'Partner dan sponsor yang mendukung acara Fun Run Event 2025'}
-                            </p> */}
+                            </p>
                         </div>
                         
                         {/* Scrolling Sponsors */}
