@@ -211,10 +211,10 @@ export default function Landing({ tickets, eventSettings }: Props) {
                         <div className="text-center mb-8">
                             {/* <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
                                 {eventSettings.sponsor?.sponsor_title || 'Didukung Oleh'}
-                            </h2> */}
+                            </h2>
                             <p className="text-sm md:text-base text-gray-600">
                                 {eventSettings.sponsor?.sponsor_subtitle || 'Partner dan sponsor yang mendukung acara Fun Run Event 2025'}
-                            </p>
+                            </p>  */}
                         </div>
                         
                         {/* Scrolling Sponsors */}
