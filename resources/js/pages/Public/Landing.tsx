@@ -120,7 +120,7 @@ export default function Landing({ tickets, eventSettings }: Props) {
                                     <h1 className="text-xl font-bold text-gray-900">
                                         {eventSettings.event?.event_name || 'Fun Run Event'}
                                     </h1>
-                                    <p className="text-sm text-gray-600">
+                                    <p className="text-sm text-gray-600 max-w-xl">
                                         {eventSettings.event?.event_subtitle || 'Jakarta Marathon Series'}
                                     </p>
                                 </div>
