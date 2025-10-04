@@ -206,7 +206,7 @@ export default function Landing({ tickets, eventSettings }: Props) {
                 </section>
 
                 {/* Sponsor Section */}
-                <section className="py-12 bg-white overflow-hidden">
+                <section className="py-8 bg-white overflow-hidden">
                     <div className="container mx-auto px-4">
                         <div className="text-center mb-8">
                             {/* <h2 className="text-lg md:text-xl font-bold text-gray-900 mb-3">
